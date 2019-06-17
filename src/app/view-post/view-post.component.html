@@ -1,0 +1,12 @@
+
+<div class="card card-profile ml-auto mr-auto" style="width: 953px">
+
+    <div class="p-3 mb-2 bg-primary text-white">Active User's {{count}} Posts are available</div>
+
+  <div class="card-body" *ngFor="let post of posts">
+    <h3 class="card-title" style="display:inline-block; color: #ff5252;" >Title: &nbsp;</h3>
+    <p class="card-text" id="paraId">{{post.title}}</p> <br>
+    <h3 class="card-title" style="display:inline-block; color: #ff5252;">Description: &nbsp;</h3>
+    <p class="card-text"  id="paraId">{{post.description}}</p>
+  </div>
+</div>

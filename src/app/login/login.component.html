@@ -1,0 +1,30 @@
+<div class="container">
+
+  <div class="alert alert-primary" role="alert">
+    <h2>Welcome to Blogsloop</h2>
+  </div>
+  <form [formGroup]='loginForm' class="form-group" (ngSubmit)='loginFormValidate()'>
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" formControlName='email' [(ngModel)]="userCheck.email">
+   <div *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
+     <div *ngIf="loginForm.controls.email.errors.required" class="text-danger">
+        Fill the above fill
+     </div>
+     <div class="text-danger" *ngIf="loginForm.controls.email.errors.pattern">
+       invalid email
+     </div>
+   </div>
+    <label for="exampleInputEmail1">Password:</label>
+    <input type="password" class="form-control" formControlName='password' [(ngModel)]="userCheck.password">
+    <div *ngIf="loginForm.controls.password.touched && loginForm.controls.password.invalid">
+      <div *ngIf="loginForm.controls.password.errors.required" class="text-danger">
+         Fill the above fill
+      </div>
+      <div class="text-danger" *ngIf="loginForm.controls.password.errors.minlength">
+        length should be minimum 8
+      </div>
+    </div><br>
+    <input type="submit" class="btn btn-success" [disabled]='loginForm.invalid' value="Login"> &nbsp;
+    <a class="btn btn-success" routerLink='/register'> Register</a>
+  </form>
+</div>

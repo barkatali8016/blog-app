@@ -1,0 +1,13 @@
+<div  class="card card-profile ml-auto mr-auto" style="width: 953px">
+  <div class="card-header">
+    <h3>
+      Edit Post
+    </h3>
+  </div>
+  <form [formGroup]='editForm' (ngSubmit)='modifyPost()' class="form-group">
+    Title: <input class="form-control" type="text" [(ngModel)]="postDetails.title" formControlName="title"><br>
+    Description: <textarea class="form-control" [(ngModel)]="postDetails.description" formControlName="description"></textarea>
+    <br>
+    <input class="btn btn-success" type="submit" value='Submit' [disabled]='editForm.invalid'>
+  </form>
+</div>

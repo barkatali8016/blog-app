@@ -1,0 +1,40 @@
+<div class="container">
+<div class="p-3 mb-2 bg-info text-white ">Login Succesful with User ---</div>
+
+<div class="card card-profile ml-auto mr-auto" style="width: 953px">
+  <div class="card-header card-header-image bg-primary">
+    <h3>
+      Add New Post
+    </h3>
+  </div>
+<form [formGroup]='addForm' (ngSubmit)='addPost()' class="form-group">
+  <label  style="font-size:30px">Title:</label>
+  <input class="form-control" type="text" [(ngModel)]="postDetails.title" formControlName="title">
+  <div *ngIf="addForm.controls.title.touched && addForm.controls.title.invalid">
+
+    <div *ngIf="addForm.controls.title.errors.required" class="text-danger">
+      Fill the above fill
+    </div>
+    <!-- <div class="form-text text-muted" *ngIf="addForm.controls.title.errors.pattern">
+      First digit should be characters
+    </div>
+    <div class="form-text text-muted" *ngIf="addForm.controls.title.errors.minlength">
+      At least 2 characters in length
+    </div>
+    <div  *ngIf="addForm.controls.title.errors.maxlength">
+      <span class="form-text text-muted">Maximum 30 characters in length</span>
+    </div> -->
+  </div><br>
+  <label  style="font-size:30px">Description:</label> <textarea class="form-control" [(ngModel)]="postDetails.description" formControlName="description"></textarea>
+  <br>
+  <div *ngIf="addForm.controls.description.touched && addForm.controls.description.invalid">
+
+    <div *ngIf="addForm.controls.description.errors.required" class="text-danger">
+      Fill the above fill
+    </div>
+    </div><br>
+  <input class="btn btn-success" type="submit" value='Submit' [disabled]='addForm.invalid'>
+
+</form>
+</div>
+</div>

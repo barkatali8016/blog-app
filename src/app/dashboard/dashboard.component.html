@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div class="alert  bg-dark text-white container" role="alert" style="position: fixed">
+    <h2 style="display:inline-block">Dashboard</h2>
+    <a
+      class="btn btn-danger"
+      style="position:absolute;right: 5px;font-size:20px; color: #f7f1e3"
+      (click)="logout()"
+      href="javascript:void(0)"
+      >Logout</a
+    >
+    <a
+      class="btn btn-primary"
+      style="position:absolute;right: 100px; font-size:20px; color: #f7f1e3"
+      href="javascript:void(0)"
+      >Change Password</a
+    >&nbsp; &nbsp;
+  </div>
+  <div class="sidebar">
+    <a routerLink="/dashboard/profile">Profile</a> <br />
+    <a routerLink="/dashboard/addpost">Add Post</a> <br />
+    <a routerLink="/dashboard/managepost">Manage Post</a> <br />
+    <a routerLink="/dashboard/viewpost">View Post</a> <br />
+    <a routerLink="/dashboard/viewallpost">View All Post</a> <br />
+  </div>
+  <div class="main" style="position: absolute;  z-index: -1;">
+    <div *ngIf="showLoadingIndicator">
+      <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

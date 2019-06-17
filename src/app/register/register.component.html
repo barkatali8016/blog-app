@@ -1,0 +1,127 @@
+<div class="container">
+  <div *ngIf=!regSuccess>
+  <h1 class="alert alert-secondary">
+    Create Your Account
+  </h1>
+  <form  #subForm class="form-group" [formGroup]='registerForm' (ngSubmit)='RegFrom()'>
+    First Name: <input [(ngModel)]='usersDetails.fname' class="form-control" type="text" formControlName="fullname">
+    <div *ngIf="registerForm.controls.fullname.touched && registerForm.controls.fullname.invalid">
+
+      <div *ngIf="registerForm.controls.fullname.errors.required" class="text-danger">
+        Fill the above fill
+      </div>
+      <div class="form-text text-muted" *ngIf="registerForm.controls.fullname.errors.pattern">
+        Only Lowercase and Uppercase letters allowed,Numbers and Special characters are not allowed
+      </div>
+      <div class="form-text text-muted" *ngIf="registerForm.controls.fullname.errors.minlength">
+        At least 2 characters in length
+      </div>
+      <div  *ngIf="registerForm.controls.fullname.errors.maxlength">
+        <span class="form-text text-muted">Maximum 30 characters in length</span>
+      </div>
+    </div><br>
+    Last Name: <input [(ngModel)]="usersDetails.lname" class="form-control" type="text" formControlName="lastname">
+    <div *ngIf="registerForm.controls.lastname.touched && registerForm.controls.lastname.invalid">
+
+      <div *ngIf="registerForm.controls.lastname.errors.required" class="text-danger">
+        Fill the above fill
+      </div>
+      <div class="form-text text-muted" *ngIf="registerForm.controls.lastname.errors.pattern">
+        Only Lowercase and Uppercase letters allowed,Numbers and Special characters are not allowed
+      </div>
+      <div class="form-text text-muted" *ngIf="registerForm.controls.lastname.errors.minlength">
+        At least 2 characters in length
+      </div>
+      <div  *ngIf="registerForm.controls.lastname.errors.maxlength">
+        <span class="form-text text-muted">Maximum 30 characters in length</span>
+      </div>
+    </div><br>   
+     Email: <input [(ngModel)]="usersDetails.email" class="form-control" type="text" formControlName="email" email>
+    <div *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+      <div *ngIf="registerForm.controls.email.errors.required" class="text-danger">
+        Fill the above fill
+      </div>
+      <div class="text-danger" *ngIf="registerForm.controls.email.errors.pattern">
+        invalid email
+      </div>
+    </div><br>
+    Password: <input type="text" (keyup)='passwordMatch(subForm)' [(ngModel)]="usersDetails.password" class="form-control" formControlName="password" password>
+    
+      <div *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+
+        <div *ngIf="registerForm.controls.password.errors.required" class="text-danger">
+          Fill the above fill
+        </div>
+        <div  *ngIf="registerForm.controls.password.errors.pattern">
+          <span class="form-text text-muted">At least 8 characters in length and At least 1 Lowercase letter and At least 1 Uppercase letter and At least 1 Number and At least 1 Special character</span>
+        </div>
+      </div><br>
+      confirm-password: <input  (keyup)='passwordMatch(subForm)' [(ngModel)]="usersDetails.confirmPassword" type="text" class="form-control"
+        formControlName="confirmpassword" password>
+        <div *ngIf="registerForm.controls.confirmpassword.touched && registerForm.controls.confirmpassword.invalid">
+
+          <div *ngIf="registerForm.controls.confirmpassword.errors.required" class="text-danger">
+            Fill the above fill
+          </div>
+          <div  *ngIf="registerForm.controls.confirmpassword.errors.pattern">
+            <span class="form-text text-muted">At least 8 characters in length and At least 1 Lowercase letter and At least 1 Uppercase letter and At least 1 Number and At least 1 Special character</span>
+          </div>
+        </div>
+        <div *ngIf="registerForm.controls.confirmpassword.touched && registerForm.controls.password.value !='' && registerForm.controls.confirmpassword.value !='' ">
+        <div class="text-success" *ngIf="registerForm.controls.confirmpassword.value == registerForm.controls.password.value; else passerrordiv">
+          Password match
+        </div>
+        <ng-template #passerrordiv>
+
+         <span class="text-danger">Password not match</span>
+        </ng-template>
+      </div>
+
+        <br>
+
+        Phone: <input [(ngModel)]='usersDetails.phone' class="form-control" type="text" formControlName="phone">
+        <div *ngIf="registerForm.controls.phone.touched && registerForm.controls.phone.invalid">
+    
+          <div *ngIf="registerForm.controls.phone.errors.required" class="text-danger">
+            Fill the above fill
+          </div>
+          <!-- <div class="form-text text-muted" *ngIf="registerForm.controls.phone.errors.pattern">
+           10 digit phone number
+          </div> -->
+          <!-- <div class="form-text text-muted" *ngIf="registerForm.controls.phone.errors.min">
+            Minimum Age 16
+          </div>
+          <div  *ngIf="registerForm.controls.fullname.errors.max">
+            <span class="form-text text-muted">Maximum Age 60 </span>
+          </div> -->
+        </div><br>
+
+
+        Age: <input [(ngModel)]='usersDetails.age' class="form-control" type="text" formControlName="age">
+        <div *ngIf="registerForm.controls.age.touched && registerForm.controls.age.invalid">
+    
+          <div *ngIf="registerForm.controls.age.errors.required" class="text-danger">
+            Fill the above fill
+          </div>
+          <!-- <div class="form-text text-muted" *ngIf="registerForm.controls.age.errors.min">
+            
+          </div> -->
+          <!-- <div class="form-text text-muted" *ngIf="registerForm.controls.phone.errors.minlength">
+            At least 2 characters in length
+          </div> -->
+          <!-- <div  *ngIf="registerForm.controls.fullname.errors.maxlength">
+            <span class="form-text text-muted">Maximum 30 characters in length</span>
+          </div> -->
+        </div><br>
+
+
+      <input class="btn btn-success" type="submit" value='Submit' [disabled]='registerForm.invalid'>
+    </form>
+
+  </div>
+    <div *ngIf="regSuccess">
+     {{regMsg}}
+    </div>
+
+  <a class="btn btn-success" routerLink='/login'>
+    <- back to login</a> </div>

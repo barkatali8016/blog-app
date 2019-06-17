@@ -1,0 +1,178 @@
+
+<div class="container" >
+
+<div class="card card-profile ml-auto mr-auto"  style="height:535px;" *ngIf="!editProfileStatus">
+    <div class="card-header card-header-image bg-primary">
+          <a href="#pablo">
+              <img class="img" src="https://scontent-bom1-2.xx.fbcdn.net/v/t1.0-1/c1.0.160.160a/p160x160/45582326_1313165565492661_6563491033731039232_n.jpg?_nc_cat=108&_nc_ht=scontent-bom1-2.xx&oh=d671be24baa1fd908733186e118814ec&oe=5D13EF01">
+          </a>
+          <a style="position: absolute;right: 30px;" class="btn btn-success" href="javascript:void(0)" (click)="viewEditProfile()">Edit Profile</a>
+
+      </div>
+
+      <div class="card-body">
+          <h4 class="card-title">Profile Name {{usersDetails.fname}} {{usersDetails.lname}}</h4>
+          <h4 class="card-title">User E-mail {{usersDetails.email}}</h4>
+          <br>
+          <h6 class="card-category text-gray">Blogger | blogsloop.com</h6>
+      </div>
+
+      <!-- <div *ngIf="editProfileStatus">
+        Edit
+      </div> -->
+      <div class="card-footer justify-content-center bg-primary ">
+        <h6 class="text-white" style="display:inline-block">Visit Our Social Media links:</h6>
+          <a href="#pablo" class="btn btn-just-icon btn-twitter btn-round">
+              <i class="fab fa-twitter">Twitter</i>
+          </a>
+          <a target='_blank' href="https://www.facebook.com/barkat.ali.9237244" class="btn btn-just-icon btn-facebook btn-round">
+              <i class="fab fa-facebook-square">Facebook</i>
+          </a>
+          <a href="#" class="btn btn-just-icon btn-round btn-google">
+              <i class="fab fa-google">oogle</i>
+          </a>
+          <a href="#" target="_blank" class="text-white" >&copy;All Right Reserve.Designed & Developed By Barkat Ali</a>
+      </div>
+  </div>
+  <div class="card card-profile ml-auto mr-auto"  style="" *ngIf="editProfileStatus">
+
+    <div class="card-header card-header-image bg-primary">
+       <a href="#pablo">
+              <img class="img" src="" alt="profile Image">
+        </a>
+      <!-- <a style="position: absolute;right: 30px;" class="btn btn-success" href="javascript:void(0)" (click)="viewEditProfile()">Edit Profile</a> -->
+
+  </div>
+
+  <div class="card-body">
+
+  <form  #subForm class="form-group" [formGroup]='registerForm' (ngSubmit)='profileUpdate()'>
+      <div class="form-row">
+          <div class="col">
+      First Name: <input [(ngModel)]='usersDetails.fname' class="form-control" type="text" formControlName="fullname">
+      <div *ngIf="registerForm.controls.fullname.touched && registerForm.controls.fullname.invalid">
+
+        <div *ngIf="registerForm.controls.fullname.errors.required" class="text-danger">
+          Fill the above fill
+        </div>
+        <div class="form-text text-muted" *ngIf="registerForm.controls.fullname.errors.pattern">
+          Only Lowercase and Uppercase letters allowed,Numbers and Special characters are not allowed
+        </div>
+        <div class="form-text text-muted" *ngIf="registerForm.controls.fullname.errors.minlength">
+          At least 2 characters in length
+        </div>
+        <div  *ngIf="registerForm.controls.fullname.errors.maxlength">
+          <span class="form-text text-muted">Maximum 30 characters in length</span>
+        </div>
+      </div>
+      </div>
+      Last Name: <input [(ngModel)]="usersDetails.lname" class="form-control" type="text" formControlName="lastname">
+      <div *ngIf="registerForm.controls.lastname.touched && registerForm.controls.lastname.invalid">
+
+        <div *ngIf="registerForm.controls.lastname.errors.required" class="text-danger">
+          Fill the above fill
+        </div>
+        <div class="form-text text-muted" *ngIf="registerForm.controls.lastname.errors.pattern">
+          Only Lowercase and Uppercase letters allowed,Numbers and Special characters are not allowed
+        </div>
+        <div class="form-text text-muted" *ngIf="registerForm.controls.lastname.errors.minlength">
+          At least 2 characters in length
+        </div>
+        <div  *ngIf="registerForm.controls.lastname.errors.maxlength">
+          <span class="form-text text-muted">Maximum 30 characters in length</span>
+        </div>
+      </div></div>
+       Email: <input [(ngModel)]="usersDetails.email" class="form-control" type="text" formControlName="email" email>
+      <div *ngIf="registerForm.controls.email.touched && registerForm.controls.email.invalid">
+        <div *ngIf="registerForm.controls.email.errors.required" class="text-danger">
+          Fill the above fill
+        </div>
+        <div class="text-danger" *ngIf="registerForm.controls.email.errors.pattern">
+          invalid email
+        </div>
+      </div><br>
+          Present Address: <textarea type="text" [(ngModel)]="usersDetails.presentaddress" class="form-control" formControlName="presentaddress" > </textarea>
+          <br>
+          Parmanent Address: <textarea type="text" [(ngModel)]="usersDetails.parmanentaddress" class="form-control" formControlName="parmanentaddress"> </textarea>
+            <br>
+
+              DOB:<input type="text" [(ngModel)]="usersDetails.dob" bsDatepicker class="form-control" formControlName="dob" password>
+
+              <!-- <div *ngIf="registerForm.controls.password.touched && registerForm.controls.password.invalid">
+
+                <div *ngIf="registerForm.controls.password.errors.required" class="text-danger">
+                  Fill the above fill
+                </div>
+                <div  *ngIf="registerForm.controls.password.errors.pattern">
+                  <span class="form-text text-muted">At least 8 characters in length and At least 1 Lowercase letter and At least 1 Uppercase letter and At least 1 Number and At least 1 Special character</span>
+                </div>
+              </div><br> -->
+                <br>
+          Phone: <input [(ngModel)]='usersDetails.phone' class="form-control" type="text" formControlName="phone">
+          <div *ngIf="registerForm.controls.phone.touched && registerForm.controls.phone.invalid">
+
+            <div *ngIf="registerForm.controls.phone.errors.required" class="text-danger">
+              Fill the above fill
+            </div>
+            <!-- <div class="form-text text-muted" *ngIf="registerForm.controls.phone.errors.pattern">
+             10 digit phone number
+            </div> -->
+            <!-- <div class="form-text text-muted" *ngIf="registerForm.controls.phone.errors.min">
+              Minimum Age 16
+            </div>
+            <div  *ngIf="registerForm.controls.fullname.errors.max">
+              <span class="form-text text-muted">Maximum Age 60 </span>
+            </div> -->
+          </div><br>
+
+
+          Age: <input [(ngModel)]='usersDetails.age' class="form-control" type="text" formControlName="age">
+          <div *ngIf="registerForm.controls.age.touched && registerForm.controls.age.invalid">
+
+            <div *ngIf="registerForm.controls.age.errors.required" class="text-danger">
+              Fill the above fill
+            </div>
+            <!-- <div class="form-text text-muted" *ngIf="registerForm.controls.age.errors.min">
+
+            </div> -->
+            <!-- <div class="form-text text-muted" *ngIf="registerForm.controls.phone.errors.minlength">
+              At least 2 characters in length
+            </div> -->
+            <!-- <div  *ngIf="registerForm.controls.fullname.errors.maxlength">
+              <span class="form-text text-muted">Maximum 30 characters in length</span>
+            </div> -->
+          </div><br>
+          Gender:
+          <!-- Gender: <select [(ngModel)]="usersDetails.gender" formControlName="gender" class="form-control form-control-sm">
+            <option  value="">Select Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            </select> -->
+            <br>
+            Hobbi: <input type="text" [(ngModel)]="usersDetails.hobbi" formControlName="hobbi" class="form-control">
+            <br>
+            Language Known: <input type="checkbox" [(ngModel)]="usersDetails.languageknown" formControlName="languageknown" class="form-control">
+            <br>
+        <input class="btn btn-success" type="submit" value='SAVE'  >
+      </form>
+
+  </div>
+
+  <!-- <div *ngIf="editProfileStatus">
+    Edit
+  </div> -->
+  <div class="card-footer justify-content-center bg-primary ">
+    <h6 class="text-white" style="display:inline-block">Visit Our Social Media links:</h6>
+      <a href="#pablo" class="btn btn-just-icon btn-twitter btn-round">
+          <i class="fab fa-twitter">Twitter</i>
+      </a>
+      <a target='_blank' href="https://www.facebook.com/barkat.ali.9237244" class="btn btn-just-icon btn-facebook btn-round">
+          <i class="fab fa-facebook-square">Facebook</i>
+      </a>
+      <a href="#" class="btn btn-just-icon btn-round btn-google">
+          <i class="fab fa-google">oogle</i>
+      </a>
+      <a href="#" target="_blank" class="text-white" >&copy;All Right Reserve.Designed & Developed By Barkat Ali</a>
+  </div>
+  </div>
+</div>

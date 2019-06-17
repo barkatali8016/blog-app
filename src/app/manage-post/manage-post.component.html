@@ -1,0 +1,29 @@
+<div class="card card-profile ml-auto mr-auto" style="width: 953px">
+<div class="card-header card-header-image bg-primary">
+    <h3>
+        Manage-Post
+    </h3>
+  </div>
+<table border="4" class="table">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Title</td>
+      <td>Description</td>
+      <td colspan="2">Action</td>
+    </tr>
+  </thead>
+  <tbody *ngFor="let p of posts;index as i ">
+    <tr>
+      <td>{{i+1}}</td>
+      <td>{{p.title}}</td>
+      <td>{{p.description}}</td>
+      <td><a href="javascript:void(0)" (click)='editPost(i)'  routerLinkActive="router-link-active" class="btn btn-success">Edit</a></td>
+      <td><input type="button" (click)="deletePost(i)" class="btn btn-danger" value="Delete"></td>
+    </tr>
+  </tbody>
+</table>
+<router-outlet ></router-outlet>
+
+<!-- <app-edit-manage-post style="display:block"></app-edit-manage-post> -->
+</div>
